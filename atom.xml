@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[filod's not here]]></title>
   <link href="http://filod.github.com/atom.xml" rel="self"/>
   <link href="http://filod.github.com/"/>
-  <updated>2012-07-09T17:05:41+08:00</updated>
+  <updated>2012-07-09T17:09:39+08:00</updated>
   <id>http://filod.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[filod]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>

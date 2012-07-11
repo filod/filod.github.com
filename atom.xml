@@ -4,7 +4,7 @@
   <title><![CDATA[filod's not here]]></title>
   <link href="http://filod.github.com/atom.xml" rel="self"/>
   <link href="http://filod.github.com/"/>
-  <updated>2012-07-11T11:41:17+08:00</updated>
+  <updated>2012-07-11T12:11:29+08:00</updated>
   <id>http://filod.github.com/</id>
   <author>
     <name><![CDATA[filod]]></name>
@@ -12,5 +12,24 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[搬家至此]]></title>
+    <link href="http://filod.github.com/blog/2012/07/11/banjiazhici/"/>
+    <updated>2012-07-11T12:08:00+08:00</updated>
+    <id>http://filod.github.com/blog/2012/07/11/banjiazhici</id>
+    <content type="html"><![CDATA[<h2>why here ?</h2>
+
+<p>没有为什么，只是常年没写blog了，搬个地儿，刺激一下自己。</p>
+
+<h2>better place ?</h2>
+
+<p>或许吧，呵呵（皮笑）</p>
+
+<h2>then ?</h2>
+
+<p>what ?</p>
+]]></content>
+  </entry>
   
 </feed>

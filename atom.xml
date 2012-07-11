@@ -4,7 +4,7 @@
   <title><![CDATA[filod's not here]]></title>
   <link href="http://filod.github.com/atom.xml" rel="self"/>
   <link href="http://filod.github.com/"/>
-  <updated>2012-07-11T12:11:29+08:00</updated>
+  <updated>2012-07-11T13:02:28+08:00</updated>
   <id>http://filod.github.com/</id>
   <author>
     <name><![CDATA[filod]]></name>
@@ -29,6 +29,14 @@
 <h2>then ?</h2>
 
 <p>what ?</p>
+
+<h3>老博客呢？</h3>
+
+<p>为确保数据不丢失，在俩地方做了backup：</p>
+
+<p><a href="http://filodoldblog.sinaapp.com">sae上的备份</a></p>
+
+<p><a href="http://blogold.filod.net">原始备份（格式更优）</a></p>
 ]]></content>
   </entry>
   

@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>filod's not here</title>
+  <title>让内联（inline）元素自动换行 - filod's not here</title>
   <meta name="author" content="filod">
 
   
@@ -23,7 +23,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://filod.github.com/">
+  <link rel="canonical" href="http://filod.github.com/blog/2012/07/18/rang-inlineyuan-su-zi-dong-huan-xing/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -66,15 +66,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/07/18/rang-inlineyuan-su-zi-dong-huan-xing/">让内联（inline）元素自动换行</a></h1>
+      <h1 class="entry-title">让内联（inline）元素自动换行</h1>
     
     
       <p class="meta">
@@ -92,14 +89,14 @@
 
 <time datetime="2012-07-18T15:09:00+08:00" pubdate data-updated="true">2012-07-18</time>
         
-         | <a href="/blog/2012/07/18/rang-inlineyuan-su-zi-dong-huan-xing/#disqus_thread">评论</a>
+         | <a href="#disqus_thread">评论</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>有时候我们需要让一个内联元素在新行显示，方法无非这样几种：</p>
+<div class="entry-content"><p>有时候我们需要让一个内联元素在新行显示，方法无非这样几种：</p>
 
 <ol>
 <li><strong>直接对该元素 <code>display:block</code></strong><br/>
@@ -126,22 +123,16 @@
 
 <p><em>更多内容可以参考<a href="http://cheeaun.com/blog/2005/06/whitespace-and-generated-content">Whitespace and generated content</a></em></p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/11/banjiazhici/">搬家至此</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">by <span class="fn">filod</span></span>
+
+      
 
 
 
@@ -153,47 +144,42 @@
   
 
 
-<time datetime="2012-07-11T12:08:00+08:00" pubdate data-updated="true">2012-07-11</time>
-        
-         | <a href="/blog/2012/07/11/banjiazhici/#disqus_thread">评论</a>
-        
-      </p>
+<time datetime="2012-07-18T15:09:00+08:00" pubdate data-updated="true">2012-07-18</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/工作点滴/'>工作点滴</a>, <a class='category' href='/blog/categories/短文/'>短文</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><h2>why here ?</h2>
-
-<p>没有为什么，只是常年没写blog了，搬个地儿，刺激一下自己。</p>
-
-<h2>better place ?</h2>
-
-<p>或许吧，呵呵（皮笑）</p>
-
-<h2>then ?</h2>
-
-<p>what ?</p>
-
-<h3>老博客呢？</h3>
-
-<p>为确保数据不丢失，在俩地方做了backup：</p>
-
-<p><a href="http://filodoldblog.sinaapp.com">sae上的备份</a></p>
-
-<p><a href="http://blogold.filod.net">原始备份（格式更优）</a></p>
+      <div class="sharing">
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/07/11/banjiazhici/" title="Previous Post: 搬家至此">&laquo; 搬家至此</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>若你说话，便是好事</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -218,6 +204,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -232,7 +219,10 @@
       var disqus_shortname = 'filodisnothere';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://filod.github.com/blog/2012/07/18/rang-inlineyuan-su-zi-dong-huan-xing/';
+        var disqus_url = 'http://filod.github.com/blog/2012/07/18/rang-inlineyuan-su-zi-dong-huan-xing/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 工作点滴 | filod's not here]]></title>
+  <link href="http://filod.github.com/blog/categories/工作点滴/atom.xml" rel="self"/>
+  <link href="http://filod.github.com/"/>
+  <updated>2012-07-18T16:35:08+08:00</updated>
+  <id>http://filod.github.com/</id>
+  <author>
+    <name><![CDATA[filod]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[让内联（inline）元素自动换行]]></title>
+    <link href="http://filod.github.com/blog/2012/07/18/rang-inlineyuan-su-zi-dong-huan-xing/"/>
+    <updated>2012-07-18T15:09:00+08:00</updated>
+    <id>http://filod.github.com/blog/2012/07/18/rang-inlineyuan-su-zi-dong-huan-xing</id>
+    <content type="html"><![CDATA[<p>有时候我们需要让一个内联元素在新行显示，方法无非这样几种：</p>
+
+<ol>
+<li><strong>直接对该元素 <code>display:block</code></strong><br/>
+这样做的问题在于，如果你要处理的元素是链接，那么这整行都变得可以点击了。</li>
+<li><strong>在元素外套上一层 <code>div</code></strong><br/>
+嗯，基本上满足大部分需要。</li>
+<li><strong>不增加标签，直接用css实现。</strong><br/>
+因为新老系统要做兼容，如果采用方法2，则需要在代码中新增模板来区分对待，如果能通过css选择器区分不同情况下的a标签如何显示当然是最好了的，其实只通过css也可以直接做到:<br/>
+<code>css
+.xx-wrap a:before{
+ content: '\a';
+ white-space: pre;
+}
+</code>
+解释一下，斜杠A（\a）表示unicode中的换行符，换行符属于“空白符”（white-space）的一种，<code>white-space</code>属性用于控制空白符如何显示，<code>white-space: pre</code>则意味着换行符的显示方式和在<code>pre</code>标签中一致（即该怎样显示，就怎样显示），关于<code>white-space</code>的其他用法可以参考<a href="http://www.w3school.com.cn/css/pr_text_white-space.asp">这里</a>。整个表达式的意思是在a的前面隐式加上一个换行。</li>
+</ol>
+
+
+<p><em>更多内容可以参考<a href="http://cheeaun.com/blog/2005/06/whitespace-and-generated-content">Whitespace and generated content</a></em></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>filod's not here</title>
+  <title>自定义上传按钮样式 - filod's not here</title>
   <meta name="author" content="filod">
 
   
@@ -35,7 +35,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://filod.github.com/">
+  <link rel="canonical" href="http://filod.github.com/blog/2012/07/22/zi-ding-yi-shang-chuan-an-niu/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -78,15 +78,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/07/22/zi-ding-yi-shang-chuan-an-niu/">自定义上传按钮样式</a></h1>
+      <h1 class="entry-title">自定义上传按钮样式</h1>
     
     
       <p class="meta">
@@ -104,14 +101,14 @@
 
 <time datetime="2012-07-22T17:11:00+08:00" pubdate data-updated="true">2012-07-22</time>
         
-         | <a href="/blog/2012/07/22/zi-ding-yi-shang-chuan-an-niu/#disqus_thread">评论</a>
+         | <a href="#disqus_thread">评论</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>自定义上传按钮这个是个老生常谈的问题了，之前在工作中碰到过，简单记录一下。<br/>
+<div class="entry-content"><p>自定义上传按钮这个是个老生常谈的问题了，之前在工作中碰到过，简单记录一下。<br/>
 实现基本原理是将<code>input[file]</code>表单的透明度设置为0，然后外层用<code>label</code>标签覆盖里层<code>input</code>，按钮样式写在<code>lable</code>当中，如：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -194,90 +191,112 @@
 
 <p>与此同时我写了一个jQuery的小插件：</p>
 
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/07/22/zi-ding-yi-shang-chuan-an-niu/">Read on &rarr;</a>
-    </footer>
-  
+<!-- more -->
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/18/rang-inlineyuan-su-zi-dong-huan-xing/">让内联（inline）元素自动换行</a></h1>
-    
-    
-      <p class="meta">
-        
+<div><script src='https://gist.github.com/3159053.js?file='></script>
+<noscript><pre><code>/**
+ * @description jquery img 上传插件 for zhihu ~
+ * @requires [jquery]
+ * @author filod &lt;ll@zhihu.com&gt;
+ */
+(function($, undefined) {
+    var ImgUploader = function(formEl, options) {
+            this.isie = true ;
+            this.option = $.extend({}, $.fn.imgUploader.defaults, options)
+            this.$msg = $('&lt;span&gt;&lt;/span&gt;')
+            this.$file = $(this.option.fileCls)
+            this.$doBtn = $(this.option.doCls)
+            this.$form = $(formEl).on('uploadchange', $.proxy(this.doneCallback, this));
+            this.$file.on(&quot;change&quot;, $.proxy(this.upload, this)); 
+        }
+    ImgUploader.prototype = {
+        constructor: ImgUploader,
+        upload: function(e) {
+            var self = this
+            if (!self.checkUploadImageType(this.$file.val())) {
+                self.setMessage(&quot;图片不是 . jpg  .png 或 .gif 格式，无法上传&quot;);
+                return
+            }
+            if(this.isie){
+                this.$form[0].submit()
+                return
+            }
+        },
+        postForm: function (e) {
+            this.$form[0].submit()
+            return false
+        },
+        checkUploadImageType: function(fileName) {
+            fileName = fileName + &quot;&quot;;
+            if (!fileName || fileName.length &lt; 3) {
+                return false;
+            }
+            fileName = fileName.toLowerCase();
+            for (var i = this.option.allowType.length - 1; i &gt;= 0; i--) {
+                if(!endsWith(fileName,this.option.allowType[i])){
+                    continue
+                }else{
+                    return true
+                }
+            };
+            return false
+        },
+        setMessage : function  (msg) {
+            this.$msg.html(msg).insertBefore(this.$form)
+        },
+        doneCallback : function(e, data) {
+            if(data.r === 1){ //上传失败了
+                this.setMessage(data.msg)
+            }else if(data.r === 0){ 
+                this.setMessage('')
+                $('.avatar-preview').attr('src',data.msg)
+            }
+        }
+    }
+    function endsWith(str, suffix) {
+        var l = str.length - suffix.length;
+        return l &gt;= 0 &amp;&amp; str.indexOf(suffix, l) == l;
+    }
+
+    $.fn.imgUploader = function(option) {
+        return this.each(function() {
+            var $this = $(this),
+                data = $this.data('scrollspy'),
+                options = typeof option == 'object' &amp;&amp; option
+            if (!data) {
+                $this.data('imagloader', (data = new ImgUploader(this,option)))
+            }
+        })
+    }
+    $.fn.imgUploader.defaults = {
+        doCls: '.do-upload',
+        fileCls: '.avatar-file',
+        allowType : ['jpg','gif','jpeg','png']
+    }
+})(jQuery);
+</code></pre></noscript></div>
 
 
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-18T15:09:00+08:00" pubdate data-updated="true">2012-07-18</time>
-        
-         | <a href="/blog/2012/07/18/rang-inlineyuan-su-zi-dong-huan-xing/#disqus_thread">评论</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>有时候我们需要让一个内联元素在新行显示，方法无非这样几种：</p>
-
-<ol>
-<li><strong>直接对该元素 <code>display:block</code></strong><br/>
-这样做的问题在于，如果你要处理的元素是链接，那么这整行都变得可以点击了。</li>
-<li><strong>在元素外套上一层 <code>div</code></strong><br/>
-嗯，基本上满足大部分需要。</li>
-<li><strong>不增加标签，直接用css实现。</strong><br/>
-因为新老系统要做兼容，如果采用方法2，则需要在代码中新增模板来区分对待，如果能通过css选择器区分不同情况下的a标签如何显示当然是最好了的，其实只通过css也可以直接做到:</li>
-</ol>
-
+<p>当然，这是针对公司特定应用的，如果要使用到自己的项目中还得修改一下。用法是：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.xx-wrap</span> <span class="nt">a</span><span class="nd">:before</span><span class="p">{</span>
-</span><span class='line'>    <span class="k">content</span><span class="o">:</span> <span class="s1">&#39;\a&#39;</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">white-space</span><span class="o">:</span> <span class="n">pre</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#form-id&#39;</span><span class="p">).</span><span class="nx">imgUploader</span><span class="p">();</span> <span class="c1">//option defalt 见源码</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>解释一下，斜杠A（\a）表示unicode中的换行符，换行符属于“空白符”（white-space）的一种，<code>white-space</code>属性用于控制空白符如何显示，<code>white-space: pre</code>则意味着换行符的显示方式和在<code>pre</code>标签中一致（即该怎样显示，就怎样显示），关于<code>white-space</code>的其他用法可以参考<a href="http://www.w3school.com.cn/css/pr_text_white-space.asp">这里</a>。整个表达式的意思是在a的前面隐式加上一个换行。</p>
-
-<p><em>更多内容可以参考<a href="http://cheeaun.com/blog/2005/06/whitespace-and-generated-content">Whitespace and generated content</a></em></p>
+<p>如果<code>iframe</code>有回调则可以在回调中调用<code>$('#avatar-form').trigger('uploadchange',data);</code></p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/11/banjiazhici/">搬家至此</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">by <span class="fn">filod</span></span>
+
+      
 
 
 
@@ -289,47 +308,42 @@
   
 
 
-<time datetime="2012-07-11T12:08:00+08:00" pubdate data-updated="true">2012-07-11</time>
-        
-         | <a href="/blog/2012/07/11/banjiazhici/#disqus_thread">评论</a>
-        
-      </p>
+<time datetime="2012-07-22T17:11:00+08:00" pubdate data-updated="true">2012-07-22</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/工作点滴/'>工作点滴</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><h2>why here ?</h2>
-
-<p>没有为什么，只是常年没写blog了，搬个地儿，刺激一下自己。</p>
-
-<h2>better place ?</h2>
-
-<p>或许吧，呵呵（皮笑）</p>
-
-<h2>then ?</h2>
-
-<p>what ?</p>
-
-<h3>老博客呢？</h3>
-
-<p>为确保数据不丢失，在俩地方做了backup：</p>
-
-<p><a href="http://filodoldblog.sinaapp.com">sae上的备份</a></p>
-
-<p><a href="http://blogold.filod.net">原始备份（格式更优）</a></p>
+      <div class="sharing">
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/07/18/rang-inlineyuan-su-zi-dong-huan-xing/" title="Previous Post: 让内联（inline）元素自动换行">&laquo; 让内联（inline）元素自动换行</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>若你说话，便是好事</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -358,6 +372,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -372,7 +387,10 @@
       var disqus_shortname = 'filodisnothere';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://filod.github.com/blog/2012/07/22/zi-ding-yi-shang-chuan-an-niu/';
+        var disqus_url = 'http://filod.github.com/blog/2012/07/22/zi-ding-yi-shang-chuan-an-niu/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

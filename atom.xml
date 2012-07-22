@@ -4,7 +4,7 @@
   <title><![CDATA[filod's not here]]></title>
   <link href="http://filod.github.com/atom.xml" rel="self"/>
   <link href="http://filod.github.com/"/>
-  <updated>2012-07-18T16:35:08+08:00</updated>
+  <updated>2012-07-22T18:04:58+08:00</updated>
   <id>http://filod.github.com/</id>
   <author>
     <name><![CDATA[filod]]></name>
@@ -12,6 +12,192 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[自定义上传按钮样式]]></title>
+    <link href="http://filod.github.com/blog/2012/07/22/zi-ding-yi-shang-chuan-an-niu/"/>
+    <updated>2012-07-22T17:11:00+08:00</updated>
+    <id>http://filod.github.com/blog/2012/07/22/zi-ding-yi-shang-chuan-an-niu</id>
+    <content type="html"><![CDATA[<p>自定义上传按钮这个是个老生常谈的问题了，之前在工作中碰到过，简单记录一下。<br/>
+实现基本原理是将<code>input[file]</code>表单的透明度设置为0，然后外层用<code>label</code>标签覆盖里层<code>input</code>，按钮样式写在<code>lable</code>当中，如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.transparent-file</span><span class="p">{</span>
+</span><span class='line'>    <span class="k">opacity</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="k">opacity</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">filter</span><span class="o">:</span><span class="n">alpha</span><span class="p">(</span><span class="k">opacity</span><span class="o">=</span><span class="m">0</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">width</span><span class="o">:</span><span class="m">88px</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">height</span><span class="o">:</span><span class="m">32px</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">top</span><span class="o">:</span><span class="m">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">left</span><span class="o">:</span><span class="m">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nc">.file-lable</span><span class="p">{</span>
+</span><span class='line'>    <span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span> <span class="c">/* 使用定位让lable 和 input 重合 */</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nc">.button</span><span class="p">{</span>
+</span><span class='line'>    <span class="c">/* 你具体button的样式 */</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;&quot;</span> <span class="na">class=</span><span class="s">&quot;file-lable button&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;file&quot;</span> <span class="na">class=</span><span class="s">&quot;transparent-file&quot;</span> <span class="na">name=</span><span class="s">&quot;picture&quot;</span>  <span class="nt">/&gt;</span>
+</span><span class='line'>    上传头像
+</span><span class='line'><span class="nt">&lt;/label&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+如果你要实现<strong>ajax上传</strong>效果，则可以利用一个隐藏的<code>iframe</code>作为上传<code>form</code>的<code>target</code>：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;iframe</span> <span class="na">src=</span><span class="s">&quot;about:blank&quot;</span> <span class="na">id=</span><span class="s">&quot;iframe&quot;</span> <span class="na">name=</span><span class="s">&quot;iframe&quot;</span> <span class="na">style=</span><span class="s">&quot;display:none&quot;</span> <span class="nt">&gt;&lt;/iframe&gt;</span>
+</span><span class='line'><span class="nt">&lt;form</span>  <span class="na">id=</span><span class="s">&quot;form-id&quot;</span> <span class="na">action=</span><span class="s">&quot;/upload&quot;</span> <span class="na">enctype=</span><span class="s">&quot;multipart/form-data&quot;</span> <span class="na">target=</span><span class="s">&quot;iframe&quot;</span>  <span class="na">method=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!-- 上传按钮在这儿 --&gt;</span>
+</span><span class='line'><span class="nt">&lt;/form&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其原理是在那个<code>iframe</code>中发起post请求，这样就可以实现ajax上传的效果啦<em>（注意enctype)</em></p>
+
+<p>如果要实现<strong>选择文件后自动上传</strong>的效果，则需要为file表单绑定<code>change</code>事件，当选择文件后会触发<code>change</code>事件，此时调用<code>form</code>元素的<code>submit</code>方法即可：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$file</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="nx">$form</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">submit</span><span class="p">()</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>注意!</strong> <em>之前我有个思路是把<code>input</code>隐藏掉，同时在单击另一个button的时候触发这个隐藏<code>input</code>的<code>click</code>事件，实时证明是可以的，但是却有兼容性问题：</em>
+在IE下，触发了<code>change</code>事件后，自动调用是<code>submit</code>方法将会报错！</p>
+
+<p>与此同时我写了一个jQuery的小插件：</p>
+
+<!-- more -->
+
+
+<div><script src='https://gist.github.com/3159053.js?file='></script>
+<noscript><pre><code>/**
+ * @description jquery img 上传插件 for zhihu ~
+ * @requires [jquery]
+ * @author filod &lt;ll@zhihu.com&gt;
+ */
+(function($, undefined) {
+    var ImgUploader = function(formEl, options) {
+            this.isie = true ;
+            this.option = $.extend({}, $.fn.imgUploader.defaults, options)
+            this.$msg = $('&lt;span&gt;&lt;/span&gt;')
+            this.$file = $(this.option.fileCls)
+            this.$doBtn = $(this.option.doCls)
+            this.$form = $(formEl).on('uploadchange', $.proxy(this.doneCallback, this));
+            this.$file.on(&quot;change&quot;, $.proxy(this.upload, this)); 
+        }
+    ImgUploader.prototype = {
+        constructor: ImgUploader,
+        upload: function(e) {
+            var self = this
+            if (!self.checkUploadImageType(this.$file.val())) {
+                self.setMessage(&quot;图片不是 . jpg  .png 或 .gif 格式，无法上传&quot;);
+                return
+            }
+            if(this.isie){
+                this.$form[0].submit()
+                return
+            }
+        },
+        postForm: function (e) {
+            this.$form[0].submit()
+            return false
+        },
+        checkUploadImageType: function(fileName) {
+            fileName = fileName + &quot;&quot;;
+            if (!fileName || fileName.length &lt; 3) {
+                return false;
+            }
+            fileName = fileName.toLowerCase();
+            for (var i = this.option.allowType.length - 1; i &gt;= 0; i--) {
+                if(!endsWith(fileName,this.option.allowType[i])){
+                    continue
+                }else{
+                    return true
+                }
+            };
+            return false
+        },
+        setMessage : function  (msg) {
+            this.$msg.html(msg).insertBefore(this.$form)
+        },
+        doneCallback : function(e, data) {
+            if(data.r === 1){ //上传失败了
+                this.setMessage(data.msg)
+            }else if(data.r === 0){ 
+                this.setMessage('')
+                $('.avatar-preview').attr('src',data.msg)
+            }
+        }
+    }
+    function endsWith(str, suffix) {
+        var l = str.length - suffix.length;
+        return l &gt;= 0 &amp;&amp; str.indexOf(suffix, l) == l;
+    }
+
+    $.fn.imgUploader = function(option) {
+        return this.each(function() {
+            var $this = $(this),
+                data = $this.data('scrollspy'),
+                options = typeof option == 'object' &amp;&amp; option
+            if (!data) {
+                $this.data('imagloader', (data = new ImgUploader(this,option)))
+            }
+        })
+    }
+    $.fn.imgUploader.defaults = {
+        doCls: '.do-upload',
+        fileCls: '.avatar-file',
+        allowType : ['jpg','gif','jpeg','png']
+    }
+})(jQuery);
+</code></pre></noscript></div>
+
+
+<p>当然，这是针对公司特定应用的，如果要使用到自己的项目中还得修改一下。用法是：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#form-id&#39;</span><span class="p">).</span><span class="nx">imgUploader</span><span class="p">();</span> <span class="c1">//option defalt 见源码</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果<code>iframe</code>有回调则可以在回调中调用<code>$('#avatar-form').trigger('uploadchange',data);</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[让内联（inline）元素自动换行]]></title>

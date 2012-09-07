@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: css | filod's not here]]></title>
+  <link href="http://filod.github.com/blog/categories/css/atom.xml" rel="self"/>
+  <link href="http://filod.github.com/"/>
+  <updated>2012-09-07T15:31:28+08:00</updated>
+  <id>http://filod.github.com/</id>
+  <author>
+    <name><![CDATA[filod]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[css sprite 相关工具的相关研究]]></title>
+    <link href="http://filod.github.com/blog/2012/08/24/zi-dong-pin-he-spritetu-pian-de-gong-ju-yu-keng/"/>
+    <updated>2012-08-24T20:54:00+08:00</updated>
+    <id>http://filod.github.com/blog/2012/08/24/zi-dong-pin-he-spritetu-pian-de-gong-ju-yu-keng</id>
+    <content type="html"><![CDATA[<h1>导读</h1>
+
+<p><strong>sprite</strong> 图一种常见的css优化手段，但手工完成这项工作难免枯燥，于是有各种大牛发明了各种自动化或者半自动化的工具来解决这一问题。</p>
+
+<p>从要解决的问题来讲，工具们在被制造时有如下几个出发点：</p>
+
+<ol>
+<li>有一堆小图片，如何生成一张大图和现成的 css。</li>
+<li>有一张大图片，如何知道大图片中的小图片对应的 css。</li>
+<li>有一堆小图片，以及写好的css，如何生成一张大图和对应的css。</li>
+</ol>
+
+
+<p><a href="http://cn.spritegen.website-performance.org/">css sprites</a>、<a href="http://alloyteam.github.com/gopng/">gopng</a>、<a href="https://github.com/jakesgordon/sprite-factory">sprite-factory</a>这几种工具对应出发点1，<a href="httwp://www.spritecow.com/">spritecow</a>对应出发点2，<a href="https://github.com/iazrael/ispriter">ispriter</a>则对应3。</p>
+
+<!-- more -->
+
+
+<h2>应用和原理</h2>
+
+<h4>有一堆小图片，如何生成一张大图和现成的 css？</h4>
+
+<p><strong>css sprites</strong>似乎最早是腾讯的鬼哥基于C#写的工具版，后来搬到了<a href="http://cn.spritegen.website-performance.org/">网上</a>，<a href="http://alloyteam.github.com/gopng/">gopng</a> 则似乎是css sprites的HTML5版继任者*。它们的基本原理是读取图片，然后基于<a href="https://github.com/jakesgordon/bin-packing">一些算法</a>把小图片拼合为一张大图片，拼合的同时记录小图片在大图片中的位置，以此生成对应的css代码。<a href="https://github.com/jakesgordon/sprite-factory">sprite-factory</a>则类似，不过因为是开源的命令行工具，相较于前两者而言你可以方便地集成到自己项目的build代码中。</p>
+
+<p><em>*没去考证，总之这俩工具都是腾讯的哥哥们搞的</em></p>
+
+<h4>有一张大图片，如何知道大图片中的小图片对应的 css？</h4>
+
+<p><a href="http://www.spritecow.com/">spritecow</a>是一个比较半自动话的工具，你如果有一张大图片的话，可以通过spritecow自动定位大图片中的小图片的<code>position</code>，并生成该小图片相应的css，简单易用，用用便知，基本原理的话则与上一种做法相反。</p>
+
+<h4>有一堆小图片，以及写好的css，如何生成一张大图和对应的css。</h4>
+
+<p>如果很不幸，你手头已经有一堆图片，一堆写好的css，以及一堆使用着这些css的HTML代码，显然前述两种做法对你而言只能是做“加法”，而不易全部推倒，还好有<a href="https://github.com/iazrael/ispriter">ispriter</a>这个工具，这个工具相较于前两者，多了一个css分析步骤，可以在不影响已有css的情况下，生成大图和css，具体的使用和原理可以<a href="http://imatlas.com/posts/nodejs-intelligent-merge-css-sprite/">看看这篇文章</a>。</p>
+
+<h2>我们的需求</h2>
+
+<p>除了文章开始的提到的三种需求，可能更多人会遇到这种困扰（这篇博文就源于此）：</p>
+
+<p>有<strong>一些</strong>不大不小图片，它们都有着已经写好的css sprites代码，随着星转斗移，<strong>一些</strong>不大不小的图片变成了<strong>一堆</strong>，这时候，你想把它们合到一张图片中去，你也不想更改你的css代码和HTML代码，而且最好一个按钮，一切搞定。</p>
+
+<p><strong>答案是，一键清理，不可能——或者说，极其困难。</strong></p>
+
+<p>所以，在这种情况下想寻求懒方法的朋友可以关掉浏览器了，再见不送~:P</p>
+
+<p>下面详细分析下产生限制的原因和权衡的解法。</p>
+
+<h3>为什么不可能</h3>
+
+<p>好，首先假设你已经认认真真看完了关于ispriter的文章，关于基本原理和用法就差不多明白了，不过多介绍。
+如果你已经有一堆，基于这种原理进行自动拼合 sprite 时，会遇到以下限制：</p>
+
+<p><strong>1. 重复属性定义.  </strong></p>
+
+<p>以这种常见情况为例：
+<code>css
+background:-moz-linear-gradient(top,#adda4d,#86b846);
+background:-webkit-gradient(linear,0 0,0 100%,from(#adda4d),to(#86b846));
+</code>
+因为<code>CSSOM</code>解析器不可能针对某一种前缀来保存解析后的样式表，所以像重复定义但是有多个前缀以适应不同浏览器的样式，<code>CSSOM</code>解析器在解析css代码时会覆盖重复的属性定义，解析出的<code>cssRules</code>中将只包含最后定义的属性（因为剥离了浏览器，所以也不会识别<code>-webkit-</code>这样的前缀），最后经过处理再输出了<code>cssText</code>就会“信息不完整”。</p>
+
+<p>so，这意味着，如果要完美实现这个 auto sprite 的功能，得修改 cssom 的解析器让其保存所有重复定义（这违背了 css 的运行时应用规则 - -b），想了想难度， 我决定作罢。</p>
+
+<p>so，在限制下，只能搞搞单独的 <code>sprite.css</code> 了</p>
+
+<p><strong>2. 写法限制 </strong></p>
+
+<p>isprite 是处理单张小图片用的，如果要处理多张已经sprite的图片，</p>
+
+<p>考虑这样一种我们<em>已有</em>的 sprite 代码的 常见情况：
+<code>css
+.icon-another{
+  background-image: url("icon1.png");
+}
+.icon {
+  background-image: url("icon2.png");
+}
+.z-icon-follow {
+  width: 8px;
+  height: 9px;
+  background-position: -88px -137px;
+}
+.z-icon-fold {
+  width: 8px;
+  height: 9px;
+  background-position: -101px -136px;
+}
+</code>
+用sprite拼合后的代码类似这样：
+<code>css
+.icon-another{
+  background-image: url("sprite.png");
+}
+.icon {
+  background-image: url("sprite.png");
+  background-position: -20px -100px; /* 此时的 `background-position` 依赖于拼合的图片的位置  */
+}
+.z-icon-follow {
+  width: 8px;
+  height: 9px;
+  background-position: -88px -137px; /* 注意，这里没变！*/
+}
+.z-icon-fold {
+  width: 8px;
+  height: 9px;
+  background-position: -101px -136px;
+}
+</code>
+很容易看出问题在于，在解析和处理css规则的时候，我们根本无法得知 <code>.z-icon-follow</code> 这条规则究竟会使用哪张图片——配合使用<code>.icon</code>还是<code>.icon-another</code>？而且，即使
+我们已经写了很多的 sprite 代码都采用了这样的写法，<a href="http://twitter.github.com/bootstrap">bootstrap</a>里的所有 sprite也是这样写的，遵循这样的写法和使用方法，如果真要实现自动sprite，则需要：</p>
+
+<ul>
+<li>拟定规则，在处理css的时候对没有<code>background-image</code>的css规则应用指定的<code>background-image</code>，而且还得根据已有的<code>background-position</code>和在最后生成的大图中小图的位置计算出最终icon的<code>background-image</code>（好拗口,>_&lt;）。</li>
+<li>或者扫描HTML文件，知道所有的class是如何使用的（基本上是个不可能任务，因为你的HTML代码很可能是模板生成的）</li>
+</ul>
+
+
+<p>所以，基本上，呃……(⊙o⊙)…</p>
+
+<h3>所以没辙了吗？</h3>
+
+<p>不是已经说了么，“一键XX”是不可能的。XD。所以真是这样的时候，重构你的代码和图片吧。对于大型或者持续开发的项目，出发点1 所限的开发方式是比较稳妥的。</p>
+
+<hr />
+
+<h5>别的 sprite 思路？</h5>
+
+<p>有个很特别的sprite 方式，是利用data:url，具体做法和相关优缺点请参考下面的文章：</p>
+
+<p><a href="http://www.cssforest.org/blog/index.php?id=152">Data URI的利弊</a></p>
+]]></content>
+  </entry>
+  
+</feed>

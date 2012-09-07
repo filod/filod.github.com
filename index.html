@@ -9,24 +9,8 @@
   <meta name="author" content="filod">
 
   
-  <meta name="description" content="自定义上传按钮这个是个老生常谈的问题了，之前在工作中碰到过，简单记录一下。
-实现基本原理是将input[file]表单的透明度设置为0，然后外层用label标签覆盖里层input，按钮样式写在lable当中，如： 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-. &hellip;">
+  <meta name="description" content="导读 sprite 图一种常见的css优化手段，但手工完成这项工作难免枯燥，于是有各种大牛发明了各种自动化或者半自动化的工具来解决这一问题。 从要解决的问题来讲，工具们在被制造时有如下几个出发点： 有一堆小图片，如何生成一张大图和现成的 css。
+有一张大图片，如何知道大图片中的小图片对应的 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -92,6 +76,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/24/zi-dong-pin-he-spritetu-pian-de-gong-ju-yu-keng/">Css Sprite 相关工具的相关研究</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-24T20:54:00+08:00" pubdate data-updated="true">2012-08-24</time>
+        
+         | <a href="/blog/2012/08/24/zi-dong-pin-he-spritetu-pian-de-gong-ju-yu-keng/#disqus_thread">评论</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>导读</h1>
+
+<p><strong>sprite</strong> 图一种常见的css优化手段，但手工完成这项工作难免枯燥，于是有各种大牛发明了各种自动化或者半自动化的工具来解决这一问题。</p>
+
+<p>从要解决的问题来讲，工具们在被制造时有如下几个出发点：</p>
+
+<ol>
+<li>有一堆小图片，如何生成一张大图和现成的 css。</li>
+<li>有一张大图片，如何知道大图片中的小图片对应的 css。</li>
+<li>有一堆小图片，以及写好的css，如何生成一张大图和对应的css。</li>
+</ol>
+
+
+<p><a href="http://cn.spritegen.website-performance.org/">css sprites</a>、<a href="http://alloyteam.github.com/gopng/">gopng</a>、<a href="https://github.com/jakesgordon/sprite-factory">sprite-factory</a>这几种工具对应出发点1，<a href="httwp://www.spritecow.com/">spritecow</a>对应出发点2，<a href="https://github.com/iazrael/ispriter">ispriter</a>则对应3。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/08/24/zi-dong-pin-he-spritetu-pian-de-gong-ju-yu-keng/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -347,6 +387,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/08/24/zi-dong-pin-he-spritetu-pian-de-gong-ju-yu-keng/">css sprite 相关工具的相关研究</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/07/22/zi-ding-yi-shang-chuan-an-niu/">自定义上传按钮样式 & ajax上传</a>

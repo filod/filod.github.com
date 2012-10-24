@@ -4,7 +4,7 @@
   <title><![CDATA[filod's not here]]></title>
   <link href="http://filod.github.com/atom.xml" rel="self"/>
   <link href="http://filod.github.com/"/>
-  <updated>2012-10-24T12:21:22+08:00</updated>
+  <updated>2012-10-24T12:23:25+08:00</updated>
   <id>http://filod.github.com/</id>
   <author>
     <name><![CDATA[filod]]></name>
@@ -130,9 +130,14 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>代码完整展示了如何存取一个具体的cookie，之所以在每个过程都使用<code>encodeURIComponent</code>和<code>decodeURIComponent</code>对名值对儿进行编解码是为了确保cookie能被正确发送到服务器，setCookie函数中只有key和value是必须的，domain等参数可选且不会发送到服务器，比如现在要想获取名uid的cookie值，并在后面加上4，我们可以这样做：
-<code>setCookie('uid', getCookie('uid') + 4)</code>
-如果要删除一个cookie，我们只需要将key的值设置为空字符串，并将它的过期时间设置为过去的时间即可，由此可以得到下面这个unsetCookie 函数：</p>
+<p>代码完整展示了如何存取一个具体的cookie，之所以在每个过程都使用<code>encodeURIComponent</code>和<code>decodeURIComponent</code>对名值对儿进行编解码是为了确保cookie能被正确发送到服务器，setCookie函数中只有key和value是必须的，domain等参数可选且不会发送到服务器，比如现在要想获取名uid的cookie值，并在后面加上4，我们可以这样做：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">setCookie</span><span class="p">(</span><span class="s1">&#39;uid&#39;</span><span class="p">,</span> <span class="nx">getCookie</span><span class="p">(</span><span class="s1">&#39;uid&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果要删除一个cookie，我们只需要将key的值设置为空字符串，并将它的过期时间设置为过去的时间即可，由此可以得到下面这个unsetCookie 函数：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -335,8 +340,9 @@
 
 
 <p>打开这个页面后，不断刷新，你会看到两个次数都会不断上涨，而关闭浏览器后再打开，则只有历史计数还存在。点击清零则会将两个计数都置为零，另外在chrome或safari开发者工具的资源（Resources）面板中可以方便地查看、调试localStorage和sessionStorage：
-<img src="http://pic.yupoo.com/filod/CmBfuHCg/medish.jpg" alt="调试 localStorage和sessionStorage" />
-Web Storage在桌面和移动设备的浏览器中都有很好的支持，除了Opera Mini 和IE8以下版本的浏览器外，基本上其他浏览器都可以完美支持。</p>
+<img src="http://pic.yupoo.com/filod/CmBfuHCg/medish.jpg" alt="调试 localStorage和sessionStorage" /></p>
+
+<p>Web Storage在桌面和移动设备的浏览器中都有很好的支持，除了Opera Mini 和IE8以下版本的浏览器外，基本上其他浏览器都可以完美支持。</p>
 ]]></content>
   </entry>
   

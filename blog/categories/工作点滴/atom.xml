@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 工作点滴 | filod's not here]]></title>
   <link href="http://filod.github.com/blog/categories/工作点滴/atom.xml" rel="self"/>
   <link href="http://filod.github.com/"/>
-  <updated>2012-10-24T12:17:39+08:00</updated>
+  <updated>2012-10-24T12:21:22+08:00</updated>
   <id>http://filod.github.com/</id>
   <author>
     <name><![CDATA[filod]]></name>
@@ -85,7 +85,89 @@ $file.on("change", function(){
 <!-- more -->
 
 
-<p>{% gist 3159053 %}
+<p><div><script src='https://gist.github.com/3159053.js?file='></script>
+<noscript><pre><code>/**
+ * @description jquery img 上传插件 for zhihu ~
+ * @requires [jquery]
+ * @author filod &lt;ll@zhihu.com&gt;
+ */
+(function($, undefined) {
+    var ImgUploader = function(formEl, options) {
+            this.isie = true ;
+            this.option = $.extend({}, $.fn.imgUploader.defaults, options)
+            this.$msg = $('&lt;span&gt;&lt;/span&gt;')
+            this.$file = $(this.option.fileCls)
+            this.$doBtn = $(this.option.doCls)
+            this.$form = $(formEl).on('uploadchange', $.proxy(this.doneCallback, this));
+            this.$file.on(&quot;change&quot;, $.proxy(this.upload, this)); 
+        }
+    ImgUploader.prototype = {
+        constructor: ImgUploader,
+        upload: function(e) {
+            var self = this
+            if (!self.checkUploadImageType(this.$file.val())) {
+                self.setMessage(&quot;图片不是 . jpg  .png 或 .gif 格式，无法上传&quot;);
+                return
+            }
+            if(this.isie){
+                this.$form[0].submit()
+                return
+            }
+        },
+        postForm: function (e) {
+            this.$form[0].submit()
+            return false
+        },
+        checkUploadImageType: function(fileName) {
+            fileName = fileName + &quot;&quot;;
+            if (!fileName || fileName.length &lt; 3) {
+                return false;
+            }
+            fileName = fileName.toLowerCase();
+            for (var i = this.option.allowType.length - 1; i &gt;= 0; i--) {
+                if(!endsWith(fileName,this.option.allowType[i])){
+                    continue
+                }else{
+                    return true
+                }
+            };
+            return false
+        },
+        setMessage : function  (msg) {
+            this.$msg.html(msg).insertBefore(this.$form)
+        },
+        doneCallback : function(e, data) {
+            if(data.r === 1){ //上传失败了
+                this.setMessage(data.msg)
+            }else if(data.r === 0){ 
+                this.setMessage('')
+                $('.avatar-preview').attr('src',data.msg)
+            }
+        }
+    }
+    function endsWith(str, suffix) {
+        var l = str.length - suffix.length;
+        return l &gt;= 0 &amp;&amp; str.indexOf(suffix, l) == l;
+    }
+
+    $.fn.imgUploader = function(option) {
+        return this.each(function() {
+            var $this = $(this),
+                data = $this.data('scrollspy'),
+                options = typeof option == 'object' &amp;&amp; option
+            if (!data) {
+                $this.data('imagloader', (data = new ImgUploader(this,option)))
+            }
+        })
+    }
+    $.fn.imgUploader.defaults = {
+        doCls: '.do-upload',
+        fileCls: '.avatar-file',
+        allowType : ['jpg','gif','jpeg','png']
+    }
+})(jQuery);
+</code></pre></noscript></div>
+
 当然，这是针对公司特定应用的，如果要使用到自己的项目中还得修改一下。用法是：<br/>
 <code>js
 $('#form-id').imgUploader(); //option defalt 见源码

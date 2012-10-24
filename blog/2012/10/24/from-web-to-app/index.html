@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>filod's not here</title>
+  <title>从网页（Web page）到 应用（APP） - filod's not here</title>
   <meta name="author" content="filod">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://filod.github.com/">
+  <link rel="canonical" href="http://filod.github.com/blog/2012/10/24/from-web-to-app/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -73,15 +73,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/10/24/from-web-to-app/">从网页（Web Page）到 应用（APP）</a></h1>
+      <h1 class="entry-title">从网页（Web Page）到 应用（APP）</h1>
     
     
       <p class="meta">
@@ -99,14 +96,14 @@
 
 <time datetime="2012-10-24T12:18:00+08:00" pubdate data-updated="true">2012-10-24</time>
         
-         | <a href="/blog/2012/10/24/from-web-to-app/#disqus_thread">评论</a>
+         | <a href="#disqus_thread">评论</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h2>从网页（Web page）到 应用（APP）</h2>
+<div class="entry-content"><h2>从网页（Web page）到 应用（APP）</h2>
 
 <h3>Web 不能承受之重</h3>
 
@@ -426,78 +423,16 @@
 <img src="http://pic.yupoo.com/filod/CmBfuHCg/medish.jpg" alt="调试 localStorage和sessionStorage" />
 Web Storage在桌面和移动设备的浏览器中都有很好的支持，除了Opera Mini 和IE8以下版本的浏览器外，基本上其他浏览器都可以完美支持。</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/24/zi-dong-pin-he-spritetu-pian-de-gong-ju-yu-keng/">Css Sprite 相关工具的相关研究</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">filod</span></span>
 
-<time datetime="2012-08-24T20:54:00+08:00" pubdate data-updated="true">2012-08-24</time>
-        
-         | <a href="/blog/2012/08/24/zi-dong-pin-he-spritetu-pian-de-gong-ju-yu-keng/#disqus_thread">评论</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>导读</h1>
-
-<p><strong>sprite</strong> 图一种常见的css优化手段，但手工完成这项工作难免枯燥，于是有各种大牛发明了各种自动化或者半自动化的工具来解决这一问题。</p>
-
-<p>从要解决的问题来讲，工具们在被制造时有如下几个出发点：</p>
-
-<ol>
-<li>有一堆小图片，如何生成一张大图和现成的 css。</li>
-<li>有一张大图片，如何知道大图片中的小图片对应的 css。</li>
-<li>有一堆小图片，以及写好的css，如何生成一张大图和对应的css。</li>
-</ol>
-
-
-<p><a href="http://cn.spritegen.website-performance.org/">css sprites</a>、<a href="http://alloyteam.github.com/gopng/">gopng</a>、<a href="https://github.com/jakesgordon/sprite-factory">sprite-factory</a>这几种工具对应出发点1，<a href="http://www.spritecow.com/">spritecow</a>对应出发点2，<a href="https://github.com/iazrael/ispriter">ispriter</a>则对应3。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/08/24/zi-dong-pin-he-spritetu-pian-de-gong-ju-yu-keng/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/22/zi-ding-yi-shang-chuan-an-niu/">自定义上传按钮样式 & Ajax上传</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -509,234 +444,38 @@ Web Storage在桌面和移动设备的浏览器中都有很好的支持，除了
   
 
 
-<time datetime="2012-07-22T17:11:00+08:00" pubdate data-updated="true">2012-07-22</time>
-        
-         | <a href="/blog/2012/07/22/zi-ding-yi-shang-chuan-an-niu/#disqus_thread">评论</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>自定义上传按钮这个是个老生常谈的问题了，之前在工作中碰到过，简单记录一下。<br/>
-实现基本原理是将<code>input[file]</code>表单的透明度设置为0，然后外层用<code>label</code>标签覆盖里层<code>input</code>，按钮样式写在<code>lable</code>当中，如：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.transparent-file</span><span class="p">{</span>
-</span><span class='line'>    <span class="k">opacity</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
-</span><span class='line'>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="k">opacity</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">filter</span><span class="o">:</span><span class="n">alpha</span><span class="p">(</span><span class="k">opacity</span><span class="o">=</span><span class="m">0</span><span class="p">);</span>
-</span><span class='line'>    <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">width</span><span class="o">:</span><span class="m">88px</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">height</span><span class="o">:</span><span class="m">32px</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">top</span><span class="o">:</span><span class="m">0</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">left</span><span class="o">:</span><span class="m">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nc">.file-lable</span><span class="p">{</span>
-</span><span class='line'>    <span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span> <span class="c">/* 使用定位让lable 和 input 重合 */</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nc">.button</span><span class="p">{</span>
-</span><span class='line'>    <span class="c">/* 你具体button的样式 */</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;&quot;</span> <span class="na">class=</span><span class="s">&quot;file-lable button&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;file&quot;</span> <span class="na">class=</span><span class="s">&quot;transparent-file&quot;</span> <span class="na">name=</span><span class="s">&quot;picture&quot;</span>  <span class="nt">/&gt;</span>
-</span><span class='line'>    上传头像
-</span><span class='line'><span class="nt">&lt;/label&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-如果你要实现<strong>ajax上传</strong>效果，则可以利用一个隐藏的<code>iframe</code>作为上传<code>form</code>的<code>target</code>：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;iframe</span> <span class="na">src=</span><span class="s">&quot;about:blank&quot;</span> <span class="na">id=</span><span class="s">&quot;iframe&quot;</span> <span class="na">name=</span><span class="s">&quot;iframe&quot;</span> <span class="na">style=</span><span class="s">&quot;display:none&quot;</span> <span class="nt">&gt;&lt;/iframe&gt;</span>
-</span><span class='line'><span class="nt">&lt;form</span>  <span class="na">id=</span><span class="s">&quot;form-id&quot;</span> <span class="na">action=</span><span class="s">&quot;/upload&quot;</span> <span class="na">enctype=</span><span class="s">&quot;multipart/form-data&quot;</span> <span class="na">target=</span><span class="s">&quot;iframe&quot;</span>  <span class="na">method=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="c">&lt;!-- 上传按钮在这儿 --&gt;</span>
-</span><span class='line'><span class="nt">&lt;/form&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其原理是在那个<code>iframe</code>中发起post请求，这样就可以实现ajax上传的效果啦<em>（注意enctype)</em></p>
-
-<p>如果要实现<strong>选择文件后自动上传</strong>的效果，则需要为file表单绑定<code>change</code>事件，当选择文件后会触发<code>change</code>事件，此时调用<code>form</code>元素的<code>submit</code>方法即可：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$file</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="nx">$form</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">submit</span><span class="p">()</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>注意!</strong> <em>之前我有个思路是把<code>input</code>隐藏掉，同时在单击另一个button的时候触发这个隐藏<code>input</code>的<code>click</code>事件，实时证明是可以的，但是却有兼容性问题：</em>
-在IE下，触发了<code>change</code>事件后，自动调用是<code>submit</code>方法将会报错！</p>
-
-<p>与此同时我写了一个jQuery的小插件：</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/07/22/zi-ding-yi-shang-chuan-an-niu/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2012-10-24T12:18:00+08:00" pubdate data-updated="true">2012-10-24</time>
       
-  <header>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2012/07/18/rang-inlineyuan-su-zi-dong-huan-xing/">让内联（inline）元素自动换行</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
+      <div class="sharing">
   
-
-
-<time datetime="2012-07-18T15:09:00+08:00" pubdate data-updated="true">2012-07-18</time>
-        
-         | <a href="/blog/2012/07/18/rang-inlineyuan-su-zi-dong-huan-xing/#disqus_thread">评论</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>有时候我们需要让一个内联元素在新行显示，方法无非这样几种：</p>
-
-<ol>
-<li><strong>直接对该元素 <code>display:block</code></strong><br/>
-这样做的问题在于，如果你要处理的元素是链接，那么这整行都变得可以点击了。</li>
-<li><strong>在元素外套上一层 <code>div</code></strong><br/>
-嗯，基本上满足大部分需要。</li>
-<li><strong>不增加标签，直接用css实现。</strong><br/>
-因为新老系统要做兼容，如果采用方法2，则需要在代码中新增模板来区分对待，如果能通过css选择器区分不同情况下的a标签如何显示当然是最好了的，其实只通过css也可以直接做到:</li>
-</ol>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.xx-wrap</span> <span class="nt">a</span><span class="nd">:before</span><span class="p">{</span>
-</span><span class='line'>    <span class="k">content</span><span class="o">:</span> <span class="s1">&#39;\a&#39;</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">white-space</span><span class="o">:</span> <span class="n">pre</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>解释一下，斜杠A（\a）表示unicode中的换行符，换行符属于“空白符”（white-space）的一种，<code>white-space</code>属性用于控制空白符如何显示，<code>white-space: pre</code>则意味着换行符的显示方式和在<code>pre</code>标签中一致（即该怎样显示，就怎样显示），关于<code>white-space</code>的其他用法可以参考<a href="http://www.w3school.com.cn/css/pr_text_white-space.asp">这里</a>。整个表达式的意思是在a的前面隐式加上一个换行。</p>
-
-<p><em>更多内容可以参考<a href="http://cheeaun.com/blog/2005/06/whitespace-and-generated-content">Whitespace and generated content</a></em></p>
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
 </div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/11/banjiazhici/">搬家至此</a></h1>
-    
-    
-      <p class="meta">
-        
+        <a class="basic-alignment left" href="/blog/2012/08/24/zi-dong-pin-he-spritetu-pian-de-gong-ju-yu-keng/" title="Previous Post: css sprite 相关工具的相关研究">&laquo; css sprite 相关工具的相关研究</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-11T12:08:00+08:00" pubdate data-updated="true">2012-07-11</time>
-        
-         | <a href="/blog/2012/07/11/banjiazhici/#disqus_thread">评论</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>why here ?</h2>
-
-<p>没有为什么，只是常年没写blog了，搬个地儿，刺激一下自己。</p>
-
-<h2>better place ?</h2>
-
-<p>或许吧，呵呵（皮笑）</p>
-
-<h2>then ?</h2>
-
-<p>what ?</p>
-
-<h3>老博客呢？</h3>
-
-<p>为确保数据不丢失，在俩地方做了backup：</p>
-
-<p><a href="http://filodoldblog.sinaapp.com">sae上的备份</a></p>
-
-<p><a href="http://blogold.filod.net">原始备份（格式更优）</a></p>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  
-  
+  </section>
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -773,6 +512,7 @@ Web Storage在桌面和移动设备的浏览器中都有很好的支持，除了
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -787,7 +527,10 @@ Web Storage在桌面和移动设备的浏览器中都有很好的支持，除了
       var disqus_shortname = 'filodisnothere';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://filod.github.com/blog/2012/10/24/from-web-to-app/';
+        var disqus_url = 'http://filod.github.com/blog/2012/10/24/from-web-to-app/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

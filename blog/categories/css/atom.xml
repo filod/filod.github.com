@@ -4,7 +4,7 @@
   <title><![CDATA[Category: css | filod's not here]]></title>
   <link href="http://filod.github.com/blog/categories/css/atom.xml" rel="self"/>
   <link href="http://filod.github.com/"/>
-  <updated>2012-09-07T15:31:28+08:00</updated>
+  <updated>2012-10-24T11:52:03+08:00</updated>
   <id>http://filod.github.com/</id>
   <author>
     <name><![CDATA[filod]]></name>
@@ -31,7 +31,7 @@
 </ol>
 
 
-<p><a href="http://cn.spritegen.website-performance.org/">css sprites</a>、<a href="http://alloyteam.github.com/gopng/">gopng</a>、<a href="https://github.com/jakesgordon/sprite-factory">sprite-factory</a>这几种工具对应出发点1，<a href="httwp://www.spritecow.com/">spritecow</a>对应出发点2，<a href="https://github.com/iazrael/ispriter">ispriter</a>则对应3。</p>
+<p><a href="http://cn.spritegen.website-performance.org/">css sprites</a>、<a href="http://alloyteam.github.com/gopng/">gopng</a>、<a href="https://github.com/jakesgordon/sprite-factory">sprite-factory</a>这几种工具对应出发点1，<a href="http://www.spritecow.com/">spritecow</a>对应出发点2，<a href="https://github.com/iazrael/ispriter">ispriter</a>则对应3。</p>
 
 <!-- more -->
 
@@ -46,7 +46,7 @@
 
 <h4>有一张大图片，如何知道大图片中的小图片对应的 css？</h4>
 
-<p><a href="http://www.spritecow.com/">spritecow</a>是一个比较半自动话的工具，你如果有一张大图片的话，可以通过spritecow自动定位大图片中的小图片的<code>position</code>，并生成该小图片相应的css，简单易用，用用便知，基本原理的话则与上一种做法相反。</p>
+<p><a href="http://www.spritecow.com/">spritecow</a>是一个比较半自动化的工具，你如果有一张大图片的话，可以通过spritecow自动定位大图片中的小图片的<code>position</code>，并生成该小图片相应的css，简单易用，用用便知，基本原理的话则与上一种做法相反。</p>
 
 <h4>有一堆小图片，以及写好的css，如何生成一张大图和对应的css。</h4>
 
@@ -108,7 +108,7 @@ background:-webkit-gradient(linear,0 0,0 100%,from(#adda4d),to(#86b846));
 用sprite拼合后的代码类似这样：
 <code>css
 .icon-another{
-  background-image: url("sprite.png");
+  background-image: url("sprite-another.png");
 }
 .icon {
   background-image: url("sprite.png");
@@ -144,9 +144,8 @@ background:-webkit-gradient(linear,0 0,0 100%,from(#adda4d),to(#86b846));
 
 <h5>别的 sprite 思路？</h5>
 
-<p>有个很特别的sprite 方式，是利用data:url，具体做法和相关优缺点请参考下面的文章：</p>
-
-<p><a href="http://www.cssforest.org/blog/index.php?id=152">Data URI的利弊</a></p>
+<p>有个很特别的sprite 方式，是利用data:url，具体做法和相关优缺点请参考下面的文章：
+<a href="http://www.cssforest.org/blog/index.php?id=152">Data URI的利弊</a></p>
 ]]></content>
   </entry>
   
